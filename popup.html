@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise Countdown</title>
+    <style>
+        body {
+            background-image: url('scanner1.jpg'); /* Change to your image */
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            flex-direction: column;
+            color: white;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+        }
+        #countdown {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            background-color: #ffcc00;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .popup-message {
+            display: none;
+            color: red;
+            font-weight: bold;
+            margin-top: 70px; /* Moved further down */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Countdown to Our Special Day - March 24 💙</h2>
+        <p id="countdown"></p>
+        <button class="button" id="surpriseBtn" onclick="openSurprise()">Open Surprise</button>
+        <p class="popup-message" id="popupMessage">🥺💖 Adhukulla enna avasaram? 😜💝 Innu konja naal wait pannu, thangoooo! 🎉🎂</p>
+    </div>
+
+    <script>
+        // Countdown Timer
+        var countDownDate = new Date("March 24, 2025 00:00:00").getTime();
+        var x = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+            
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "🎉 It's Time for the Surprise! 🎉";
+                document.getElementById("surpriseBtn").disabled = false;
+            }
+        }, 1000);
+
+        function openSurprise() {
+            var now = new Date().getTime();
+            if (now < countDownDate) {
+                document.getElementById("popupMessage").style.display = "block";
+            } else {
+                window.location.href = "surprise.html"; // Redirect to surprise page
+            }
+        }
+    </script>
+</body>
+</html>
